@@ -1,0 +1,3 @@
+glib-single-include.patch
+vv-option.patch
+fix_ncurses_format_annotation.patch

@@ -1,0 +1,16 @@
+# Starting with glib 2.32 it is now mandatory to include glib.h instead
+# of individual headers [1]
+# [1] http://git.gnome.org/browse/glib/commit/?id=7455dd370eb37ce3b0b409ff6120501f37b50569
+Index: tmispell-voikko-0.7.1/src/charset.cc
+===================================================================
+--- tmispell-voikko-0.7.1.orig/src/charset.cc	2008-02-12 20:51:16.000000000 +0200
++++ tmispell-voikko-0.7.1/src/charset.cc	2012-03-27 15:01:23.000000000 +0300
+@@ -28,7 +28,7 @@
+ #include "glibmm/convert.h"
+ 
+ #include <errno.h>
+-#include <glib/gerror.h>
++#include <glib.h>
+ 
+ #include "i18n.hh"
+ #include "common.hh"

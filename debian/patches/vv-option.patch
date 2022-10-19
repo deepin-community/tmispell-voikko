@@ -1,0 +1,24 @@
+The following patch makes -vv behave the same as -v. I committed it to
+upstream SVN but we are not very likely to make a release for this.
+Tmispell is deprecated, I recommend using enchant instead. It does
+support -vv already.
+
+==================================================================
+--- a/src/options.cc       2010-08-11 18:09:25 UTC (rev 3480)
++++ b/src/options.cc       2010-08-12 19:40:55 UTC (rev 3481)
+@@ -293,13 +293,11 @@
+ 			continue; // This argument will not be passed to ispell
+ 
+ 		} else if (p.is_option("-v") ||
++                          p.is_option("-vv") ||
+ 			   p.is_option("--version")) { // Print version
+ 			print_version();
+ 			mode_ = quit;
+ 			return;
+-		} else if (p.is_option("-vv")) { // Print extra information
+-			mode_ = ispell;
+-
+ 		} else if (p.is_option("--help")) { // Print usage
+ 			print_usage();
+ 			mode_ = quit;
+

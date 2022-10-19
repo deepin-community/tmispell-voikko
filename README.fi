@@ -1,0 +1,163 @@
+                             Tmispell
+
+  Pauli Virtanen <pauli.virtanen@hut.fi>	(alkuperäinen Tmispell)
+  Harri Pitkänen <hatapitk@iki.fi>		(muutokset Voikkoa varten)
+
+HUOMAA! Tmispelliä ei enää ylläpidetä! Enchant sisältää korvaavan apuohjelman,
+jota myös voi käyttää ispellin korvikkeena. Enchantin käyttö on suositeltavaa
+kaikissa tilanteissa joissa se on mahdollista. Jos Enchant ei täytä tarpeitasi,
+on suositeltavaa osallistua sen kehittämiseen, jotta tmispellistä voitaisiin
+jossain vaiheessa luopua.
+
+   --------------------------------------------------------------------------
+
+Mikä Tmispell on?
+
+   Tmispell on Ispell-yhteensopiva käyttöliittymä oikolukumoduuleille.
+   Varsinaisen oikoluvun suomen kieltä varten hoitaa oikolukujärjestelmä
+   nimeltä Voikko[1].
+
+   Sama ilmaistuna hieman toisin: Tmispell on läpinäkyvä kuori
+   Ispellille. Monet ohjelmat (esim. sähköpostiohjelmat ja
+   tekstinkäsittelyohjelmat) käyttävät Ispelliä tekstin oikolukemiseen.
+   Koska Tmispell matkii Ispelliä, nämä ohjelmat käyttävät
+   automaattisesti Tmispelliä (ja siten Voikkoa) ilman, että mitään
+   tarvitsee muuttaa. Lisäksi Tmispell osaa käynnistää alkuperäisen
+   Ispellin, jos halutulle kielelle ei ole tukea Tmispellissä.
+
+Käyttö
+
+   Tällä hetkellä Tmispellissä on tekstikäyttöliittymä, jota voi käyttää
+   tekstien oikolukemiseen. Sen voi käynnistää kirjoittamalla
+
+ tmispell -dsuomi tiedosto.txt
+
+   Kun väärin kirjoitettu sana löytyy, kysyy ohjelma, mitä tehdä.
+   Käyttöliittymän toiminnan pitäisi olla melko itsestäänselvää, mutta
+   luettelon käytettävistä näppäimistä saa kirjoittamalla "?".
+
+   Jos haluat käyttää suodattimia, kirjoita yksi valitsimista '-t', '-n'
+   tai '-h' (vastaavat muotoja TeX, nroff ja sgml) oikoluettavan
+   tiedoston nimen eteen. Lisätietoja valitsimista on Ispellin
+   manuaalisivulla ispell(1).
+
+Asennus
+
+   Nämä ohjeet kertovat, miten Tmispell käännetään ja asennetaan
+   lähdekoodipaketista. Olemassa on myös valmiita asennuspaketteja eri
+   Linux-jakeluille. Niitä kannattaa käyttää, jos ei halua tehdä asioita
+   vaikeasti.
+
+    1. Hae ja asenna libvoikko[1] ja sen vaatimat komponentit.
+
+    2. Tmispellin kääntäminen ja asennus:
+
+           ./configure
+           make
+           make install
+
+
+       "make install" vain kopioi Tmispell-ohjelman ja manuaalisivun
+       sopiviin paikkoihin.
+
+    3. Luo asetustiedosto, ja sijoita se sinne, mistä Tmispell sen
+       löytää. Mallina on esimerkkitiedosto tmispell.conf.example.
+       (Katso "Asetustiedoston muoto" alempana.) Tarkista, että
+       tiedostojen polut oikolukumoduuliriveillä ovat oikein.
+
+    4. Saadaksesi muut ohjelmat käyttämään Tmispelliä Ispellin sijaan,
+       siirrä ensin alkuperäinen Ispell-ohjelmatiedosto syrjään, ja luo
+       linkki "ispell", joka osoittaa tmispelliin, esimerkiksi näin:
+
+             mv /usr/bin/ispell /usr/bin/ispell.real
+             ln -s /usr/local/bin/tmispell /usr/bin/ispell
+
+
+       Muista muuttaa "ispell=..."-rivi asetustiedostossa osoittamaan
+       alkuperäiseen Ispell-ohjelmaan.
+
+       Muiden ohjelmien täytyy tietää, että suomen oikoluku on
+       mahdollista, joten aja seuraava komento luodaksesi tarvittavat
+       "sanastotiedostot":
+
+             touch /usr/lib/ispell/suomi.{hash,aff}
+
+
+       Huomaa, että tiedostojen polku voisi olla myös
+       "/usr/share/ispell" tai jotakin vastaavaa järjestelmästäsi
+       riippuen.
+
+    5. Tarkistaaksesi, että Tmispell toimii kunnolla, kirjoita seuraava
+       komento:
+
+             ispell -dsuomi -a
+
+       Jos määrittelit sanaston nimeltä "suomi" asetustiedostossa, niin
+       seuraavanlaisen rivin pitäisi näkyä:
+
+ @(#) International Ispell Version 3.1.20 compatible tmispell-voikko 0.4.3
+
+       Nyt voit kirjoittaa sanoja oikoluettavaksi. Lisätietoja tästä
+       komentotilasta saa manuaalisivulta ispell(1).
+
+Ohjelmakohtaisia ohjeita
+
+     o Emacs (sekä Ispell- että Flyspell-tilat)
+
+       Koska Emacsin Ispell-tuki ei itsestään tiedä suomen kielen
+       sanaston olemassaolosta mitään, täytyy Emacsin asetustiedostoon
+       (~/.emacs) lisätä seuraavanlaiset asetukset:
+
+ (setq ispell-local-dictionary-alist
+       (append ispell-local-dictionary-alist
+        '(("suomi"
+           "[%.0-9A-Za-z\247\300-\326\330-\366\370-\377-]"
+           "[^.%0-9A-Za-z\247\300-\326\330-\366\370-\377-]"
+           "[':]" nil nil nil utf-8))))
+
+       Vaihda utf-8 iso-8859-1:ksi tai iso-8859-15:ksi jos käytät
+       muuta merkistökoodausta kuin UTF-8.
+       Asetuksista riippuen ispell-local-dictionary-alist voi olla myös
+       ispell-dictionary-alist. Käytössä olevaa sanastoa voi muuttaa
+       komennolla "M-x ispell-change-dictionary". Jos haluat suomen
+       kielen olevan oletussanasto, lisää asetustiedostoon myös rivi:
+
+ (setq ispell-dictionary "suomi")
+
+     o Pspell (Sylpheed, Balsa ja monet muut)
+
+       Vaikka Pspelliä ollaankin korvaamassa Aspellillä, jotkin ohjelmat
+       käyttävät sitä vielä. Tmispelliä voi käyttää Pspellin kanssa, jos
+       Pspellin pspell-ispell-moduuli on asennettu, ja on olemassa
+       tiedosto /usr/share/pspell/fi-ispell.pwli, jossa on seuraava
+       rivi:
+
+ /usr/lib/ispell/suomi.hash utf-8
+
+     o Muut ohjelmat (useimmat KDE-ohjelmat, LyX ym.)
+
+       Kun "sanastotiedostot" ovat olemassa (katso asennus), suomen
+       pitäisi näkyä yhtenä kielivaihtoehtona näissä ohjelmissa.
+
+Tunnetut ongelmat
+
+  Puuttuvat ominaisuudet
+
+     o SGML-suodattimen tulisi osata purkaa ja koodata entiteettejä.
+       Jotta tämän voisi tehdä järkevästi, tarvittaneen muutoksia
+       suodatinarkkitehtuuriin.
+
+     o Aspell-tuki puuttuu. Tätä ei ole tällä hetkellä suunnitteilla,
+       suositeltavampaa on pyrkiä korvaamaan Aspell esimerkiksi
+       Enchantilla kohdesovelluksissa.
+
+  Muuta tehtävää
+
+     o Mieti Ispellin "extended charactereja" (mitä lienevätkään).
+
+Viittaukset
+
+   1. http://voikko.sourceforge.net/
+
+
+vim: tw=72

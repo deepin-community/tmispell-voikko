@@ -1,0 +1,217 @@
+tmispell-voikko (0.7.1-5) unstable; urgency=medium
+
+  * Add fix_ncurses_format_annotation.patch (Closes: #994859)
+  * Bump debhelper version
+  * Remove dependency on autotools-dev which is not needed anymore
+  * debian/rules: remove some trailing whitespaces
+
+ -- Timo Jyrinki <timo@debian.org>  Fri, 01 Oct 2021 09:52:17 +0300
+
+tmispell-voikko (0.7.1-4) unstable; urgency=medium
+
+  * Drop unneeded libmalaga-dev dependency.
+  * Update Standards-Version (no changes).
+  * Bump debian/compat and debhelper dependency to 9.
+  * Clean up debian/rules.
+  * Run wrap-and-sort -a -t.
+
+ -- Timo Jyrinki <timo@debian.org>  Wed, 17 Feb 2016 11:18:58 +0200
+
+tmispell-voikko (0.7.1-3) unstable; urgency=low
+
+  [ Harri Pitkänen]
+  * Add -vv option (Closes: #592698)
+
+ -- Timo Jyrinki <timo@debian.org>  Wed, 28 Mar 2012 10:43:15 +0300
+
+tmispell-voikko (0.7.1-2) unstable; urgency=low
+
+  * Update Standards-Version
+  * Add recommended build targets
+  * Bump dephelper, add ${misc:Depends}
+  * Switch to 3.0 (quilt) package format
+  * Add patch to not include individual glib headers (Closes: #665620)
+  * Remove duplicate section mention in debian/control
+  * Replace dh_clean -k with dh_prep
+
+ -- Timo Jyrinki <timo@debian.org>  Tue, 27 Mar 2012 14:56:44 +0300
+
+tmispell-voikko (0.7.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #505686)
+  * Update maintainer address
+  * Add -e to tmispell-voikko.postinst/prerm (Lintian)
+
+ -- Timo Jyrinki <timo@debian.org>  Mon, 16 Feb 2009 17:07:01 +0200
+
+tmispell-voikko (0.7-2) unstable; urgency=low
+
+  * Drop libenchant-voikko, now part of enchant itself
+  - Edit control and rules accordingly, --disable-enchant
+  * Add voikko-fi to Depends of tmispell-voikko
+  - Does not cope well without voikko-fi at the moment
+  * Update Standards-Version to 3.8.0 (no changes)
+  * Update copyright to fix lintian warning
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Fri, 18 Jul 2008 15:43:34 +0300
+
+tmispell-voikko (0.7-1) unstable; urgency=low
+
+  * New upstream release (drops a copy of glibmm among else)
+  * Update Standards-Version to 3.7.3 (no changes needed)
+  * Add Homepage field to control file
+  * Update rules as discussed with upstream
+  * Switch from ncurses to ncursesw, add libglibmm-2.4-dev dependency
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Mon, 18 Feb 2008 09:49:50 +0200
+
+tmispell-voikko (0.6.3-1) unstable; urgency=low
+
+  * New upstream release (Closes: #441607)
+  * Update rules to fix lintian warning
+  * Update docs and rules to reflect file renames
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Sun, 18 Nov 2007 01:08:44 +0200
+
+tmispell-voikko (0.6.2-1) unstable; urgency=low
+
+  * New upstream release, fixes enchant with KDE4 and gedit
+  * Update dependencies
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Thu, 24 May 2007 22:56:17 +0300
+
+tmispell-voikko (0.6.1-2) unstable; urgency=low
+
+  * Fix FTBFS with GCC 4.3 (Closes: #417726)
+  * Update homepage, watch file
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Wed,  4 Apr 2007 19:08:52 +0300
+
+tmispell-voikko (0.6.1-1) unstable; urgency=low
+
+  * New upstream version
+  * Remove LD_FLAGS from rules (unnecessary, prevents eg. ppc build)
+  * Fix README.FI -> README.fi
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Wed, 18 Oct 2006 20:04:10 +0300
+
+tmispell-voikko (0.6-4) unstable; urgency=low
+
+  * Install LUEMINUT as README.fi
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Sat, 30 Sep 2006 15:35:57 +0300
+
+tmispell-voikko (0.6-3) unstable; urgency=low
+
+  * Add lintian override for "missing" manpage for ispell
+  * Remove libglib2.0-dev dependency (comes now from libmalaga-dev)
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Tue, 26 Sep 2006 19:01:21 +0300
+
+tmispell-voikko (0.6-2) unstable; urgency=low
+
+  * Complete ITP (Closes: #388802)
+  * Indent homepage by two spaces in debian/control
+  * Uncomment config.sub/guess in debian/rules, add autotools-dev dependency
+  * Remove commented dh_-calls from debian/rules
+  * Move -z defs to LDFLAGS in debian/rules
+  * Remove cruft from debian/watch
+  * Add dependencies to libvoikko-dev, libmalaga-dev
+  * Update debian/copyright
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Mon, 25 Sep 2006 19:44:03 +0300
+
+tmispell-voikko (0.6-1) unstable; urgency=low
+
+  * Update Standard-Version to 3.7.2
+  * Translate some comments in debian-directory to English.
+  * Lintian cleaning: fix bashism, add #DEBHELPER#:s
+  * Linda cleaning: add section, remove erronous characters, dh4 dependency
+
+ -- Timo Jyrinki <timo.jyrinki@iki.fi>  Wed, 20 Sep 2006 19:21:19 +0300
+
+tmispell-voikko (0.6-0hf1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Sat, 26 Aug 2006 23:47:05 +0300
+
+tmispell-voikko (0.5.0-0hf2) unstable; urgency=low
+
+  * Removed debconf from dependencies (debian/control)
+  * Removed debian/tmispell-voikko.conffiles because it added duplicate entry for
+    /etc/tmispell.conf
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Wed,  2 Aug 2006 09:49:00 +0300
+
+tmispell-voikko (0.5.0-0hf1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Mon, 31 Jul 2006 11:46:41 +0300
+
+tmispell-voikko (0.4.3-0hf1) unstable; urgency=low
+
+  * New upstream release
+  * Added new conflict definitions: tmispell-voikko conflicts now with
+    tmispell and tmispell-soikko
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Thu, 29 Jun 2006 19:53:13 +0300
+
+tmispell-voikko (0.4.2-0hf1) unstable; urgency=low
+
+  * New upstream release
+  * Moved from "contrib/text" to "text" since tmispell-voikko doesn't depend
+    on a non-free component (Soikko) anymore.
+  * tmispell-voikko and libenchant-voikko are now separate packages
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Sun, 28 May 2006 22:15:21 +0300
+
+tmispell-voikko (0.4.1-0hf1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Sat, 27 May 2006 20:03:08 +0300
+
+tmispell-voikko (0.3-0hf1) unstable; urgency=low
+
+  * New upstream release
+  * New maintainer and package name
+
+ -- Teemu Likonen <tlikonen@iki.fi>  Sat, 27 May 2006 09:43:16 +0300
+
+tmispell (0.2.3-0.1.unofficial) unstable; urgency=low
+
+  * Version 0.2.3.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Mon, 19 May 2003 17:57:44 +0300
+
+tmispell (0.2.2-0.1.unofficial) unstable; urgency=low
+
+  * Version 0.2.2.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Thu, 15 May 2003 17:32:04 +0300
+
+tmispell (0.2.1-0.1.unofficial) unstable; urgency=low
+
+  * Version 0.2.1.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Tue, 13 May 2003 14:50:01 +0300
+
+tmispell (0.2-0.1.unofficial) unstable; urgency=low
+
+  * Version 0.2.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Mon, 12 May 2003 00:40:02 +0300
+
+tmispell (0.1.2-0.2.unofficial) unstable; urgency=low
+
+  * Adapted for use with libsoikko0.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Thu, 20 Feb 2003 22:28:50 +0200
+
+tmispell (0.1.2-0.1.unofficial) unstable; urgency=low
+
+  * Initial unofficial packaging.
+
+ -- Pauli Virtanen <pauli.virtanen@hut.fi>  Thu, 16 Jan 2003 21:18:18 +0200

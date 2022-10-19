@@ -1,0 +1,11 @@
+--- a/src/ui/cursesui.cc	2008-02-12 20:48:34.000000000 +0200
++++ b/src/ui/cursesui.cc	2021-10-01 09:36:25.459259214 +0300
+@@ -195,7 +195,7 @@
+ 	werase(minimenu_w_);
+ 	wmove(minimenu_w_, 0, 0);
+ 	wprintw(minimenu_w_,
+-		parent_.to_locale(_("[SP] <number> R)epl A)ccept I)nsert L)ookup U)ncap Q)uit "
++		"%s", parent_.to_locale(_("[SP] <number> R)epl A)ccept I)nsert L)ookup U)ncap Q)uit "
+ 				    "e(X)it or ? for help")).c_str());
+ 	wrefresh(minimenu_w_);
+ }
