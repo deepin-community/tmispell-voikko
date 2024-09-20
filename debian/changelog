@@ -1,3 +1,9 @@
+tmispell-voikko (0.7.1-5deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:20:11 +0800
+
 tmispell-voikko (0.7.1-5) unstable; urgency=medium
 
   * Add fix_ncurses_format_annotation.patch (Closes: #994859)
